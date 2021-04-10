@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from "./components/Nav";
+import GifContainer from "./components/GifContainer";
+import GlobalStyle from "./components/GlobalStyle";
+import Search from "./components/Search";
+import React, { useState, useEffect } from "react";
+
+// States
 
 function App() {
+  const [gifs, setGifs] = useState(["", ""]);
+  const [isReady, setIsReady] = useState(false);
+  useEffect(() => {
+    let URL =
+      "https://api.giphy.com/v1/gifs/trending?api_key=BfbPZGK6vQqT1aHDeHzE0SjBg2be4cil&limit=12&rating=g";
+    fetch(URL)
+      .then((data) => data.json())
+      .then((data) => {
+        setGifs(data.data);
+        setIsReady(true);
+      });
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle />
+      <Nav />
+      <Search setGifs={setGifs} />
+      <GifContainer
+        isReady={isReady}
+        setIsReady={setIsReady}
+        setGifs={setGifs}
+        gifs={gifs}
+      />
     </div>
   );
 }
