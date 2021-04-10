@@ -11,7 +11,7 @@ const Gif = ({ url, height, width }) => {
     iconRef.current.style.fontSize = "3vw";
     setTimeout(() => {
       iconRef.current.removeAttribute("style");
-    }, 1000);
+    }, 600);
   };
   return (
     <StyGif height={height} width={width}>

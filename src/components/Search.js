@@ -1,26 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Search = ({ setGifs }) => {
+  const [searching, setSearching] = useState(false);
   const inputRef = useRef(null);
   const SearchHandler = () => {
     let searchWord = inputRef.current.value;
+    if (searchWord === "") return;
     fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=BfbPZGK6vQqT1aHDeHzE0SjBg2be4cil&q=${searchWord}&limit=12&offset=0&rating=g&lang=es`
     )
       .then((data) => data.json())
       .then((data) => {
         setGifs(data.data);
+        setSearching(true);
         inputRef.current.value = "";
+        setTimeout(() => {
+          setSearching(false);
+        }, 1000 * 2);
       });
   };
   return (
-    <StySearch>
+    <StySearch searching={searching}>
       <input ref={inputRef} type="text" placeholder="Buscar.." />
       <div onClick={SearchHandler}>
-        <FontAwesomeIcon icon={faSearch} />
+        <FontAwesomeIcon icon={searching ? faSpinner : faSearch} />
       </div>
     </StySearch>
   );
@@ -52,6 +58,15 @@ const StySearch = styled.div`
     transition: 200ms all ease;
     &:hover {
       background: #af6200;
+    }
+    svg {
+      animation: ${(props) =>
+        props.searching ? "spin 1s linear infinite" : "none"};
+    }
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
   @media screen and (max-width: 768px) {
