@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Gif = ({ url, height, width }) => {
-  // const parrRef = useRef(null);
-  // const copyHandle = () => {
-  //   parrRef.current.select();
-  //   document.execCommand("copy");
-  // };
+  const iconRef = useRef(null);
+  const ColorChangeHandler = () => {
+    iconRef.current.style.color = "green";
+    iconRef.current.style.fontSize = "3vw";
+    setTimeout(() => {
+      iconRef.current.removeAttribute("style");
+    }, 1000);
+  };
   return (
     <StyGif height={height} width={width}>
       <img src={url} alt="Gif Cargado" />
-      <div>
+      <div ref={iconRef}>
         <CopyToClipboard text={url}>
-          <FontAwesomeIcon icon={faShareSquare} />
+          <FontAwesomeIcon onClick={ColorChangeHandler} icon={faShareSquare} />
         </CopyToClipboard>
       </div>
     </StyGif>
@@ -48,15 +51,16 @@ const StyGif = styled.div`
   }
   div {
     display: flex;
+    color: #af6200;
     justify-content: space-around;
     align-items: center;
     width: 80%;
     height: 4vw;
     margin-bottom: 0.5vw;
+    font-size: 2.5vw;
   }
   svg {
-    color: #af6200;
-    font-size: 2.5vw;
+    transition: all 100ms ease;
     font-weight: 700;
     cursor: pointer;
     &:hover {
