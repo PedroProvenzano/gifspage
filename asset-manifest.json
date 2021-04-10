@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/gifspage/static/js/main.e227322d.chunk.js",
-    "main.js.map": "/gifspage/static/js/main.e227322d.chunk.js.map",
+    "main.js": "/gifspage/static/js/main.c7a0c217.chunk.js",
+    "main.js.map": "/gifspage/static/js/main.c7a0c217.chunk.js.map",
     "runtime-main.js": "/gifspage/static/js/runtime-main.7901a5d3.js",
     "runtime-main.js.map": "/gifspage/static/js/runtime-main.7901a5d3.js.map",
-    "static/js/2.1d1f2f6f.chunk.js": "/gifspage/static/js/2.1d1f2f6f.chunk.js",
-    "static/js/2.1d1f2f6f.chunk.js.map": "/gifspage/static/js/2.1d1f2f6f.chunk.js.map",
+    "static/js/2.a7bd2d8f.chunk.js": "/gifspage/static/js/2.a7bd2d8f.chunk.js",
+    "static/js/2.a7bd2d8f.chunk.js.map": "/gifspage/static/js/2.a7bd2d8f.chunk.js.map",
     "static/js/3.6eb640b7.chunk.js": "/gifspage/static/js/3.6eb640b7.chunk.js",
     "static/js/3.6eb640b7.chunk.js.map": "/gifspage/static/js/3.6eb640b7.chunk.js.map",
     "index.html": "/gifspage/index.html",
-    "static/js/2.1d1f2f6f.chunk.js.LICENSE.txt": "/gifspage/static/js/2.1d1f2f6f.chunk.js.LICENSE.txt"
+    "static/js/2.a7bd2d8f.chunk.js.LICENSE.txt": "/gifspage/static/js/2.a7bd2d8f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7901a5d3.js",
-    "static/js/2.1d1f2f6f.chunk.js",
-    "static/js/main.e227322d.chunk.js"
+    "static/js/2.a7bd2d8f.chunk.js",
+    "static/js/main.c7a0c217.chunk.js"
   ]
 }
