@@ -9,13 +9,13 @@ const Search = ({ setGifs }) => {
   const SearchHandler = () => {
     let searchWord = inputRef.current.value;
     if (searchWord === "") return;
+    setSearching(true);
     fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=BfbPZGK6vQqT1aHDeHzE0SjBg2be4cil&q=${searchWord}&limit=12&offset=0&rating=g&lang=es`
     )
       .then((data) => data.json())
       .then((data) => {
         setGifs(data.data);
-        setSearching(true);
         inputRef.current.value = "";
         setTimeout(() => {
           setSearching(false);
