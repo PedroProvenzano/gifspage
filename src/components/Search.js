@@ -6,6 +6,12 @@ import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 const Search = ({ setGifs }) => {
   const [searching, setSearching] = useState(false);
   const inputRef = useRef(null);
+  const enterHandler = (e) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      SearchHandler();
+    }
+  };
   const SearchHandler = () => {
     let searchWord = inputRef.current.value;
     if (searchWord === "") return;
@@ -24,7 +30,12 @@ const Search = ({ setGifs }) => {
   };
   return (
     <StySearch searching={searching}>
-      <input ref={inputRef} type="text" placeholder="Buscar.." />
+      <input
+        onKeyDown={enterHandler}
+        ref={inputRef}
+        type="text"
+        placeholder="Buscar.."
+      />
       <div onClick={SearchHandler}>
         <FontAwesomeIcon icon={searching ? faSpinner : faSearch} />
       </div>

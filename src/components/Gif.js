@@ -3,8 +3,17 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { motion } from "framer-motion";
 
-const Gif = ({ url, height, width }) => {
+const Gif = ({ shareUrl, url, height, width }) => {
+  const animation = {
+    hidden: { opacity: 0, scale: 0.2 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", stiffness: 260, damping: 20 },
+    },
+  };
   const iconRef = useRef(null);
   const ColorChangeHandler = () => {
     iconRef.current.style.color = "green";
@@ -14,10 +23,16 @@ const Gif = ({ url, height, width }) => {
     }, 600);
   };
   return (
-    <StyGif height={height} width={width}>
+    <StyGif
+      height={height}
+      width={width}
+      variants={animation}
+      initial="hidden"
+      animate="show"
+    >
       <img src={url} alt="Gif Cargado" />
       <div ref={iconRef}>
-        <CopyToClipboard text={url}>
+        <CopyToClipboard text={shareUrl}>
           <FontAwesomeIcon onClick={ColorChangeHandler} icon={faShareSquare} />
         </CopyToClipboard>
       </div>
@@ -25,7 +40,7 @@ const Gif = ({ url, height, width }) => {
   );
 };
 
-const StyGif = styled.div`
+const StyGif = styled(motion.div)`
   margin-top: 1rem;
   background: #fba333;
   border: outset #af6200 8px;

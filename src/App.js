@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 // States
 
 function App() {
-  const [gifs, setGifs] = useState(["", ""]);
+  const [gifs, setGifs] = useState(null);
   const [isReady, setIsReady] = useState(false);
   useEffect(() => {
     let URL =

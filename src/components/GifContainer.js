@@ -1,27 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-
 import Gif from "./Gif";
+import { motion } from "framer-motion";
 
 const GifContainer = ({ isReady, gifs }) => {
   return (
     <StyGifContainer>
-      {isReady
-        ? gifs.map((gif) => (
-            <Gif
-              title={gif.title}
-              url={gif.images.fixed_height.url}
-              height={gif.images.fixed_height.height}
-              width={gif.images.fixed_height.width}
-              key={gif.id}
-            />
-          ))
-        : ""}
+      {gifs &&
+        gifs.map((gif) => (
+          <Gif
+            title={gif.title}
+            shareUrl={gif.embed_url}
+            url={gif.images.fixed_height.url}
+            height={gif.images.fixed_height.height}
+            width={gif.images.fixed_height.width}
+            key={gif.id}
+          />
+        ))}
     </StyGifContainer>
   );
 };
 
-const StyGifContainer = styled.div`
+const StyGifContainer = styled(motion.div)`
   padding: 2vw 5vw;
   display: flex;
   justify-content: space-between;
